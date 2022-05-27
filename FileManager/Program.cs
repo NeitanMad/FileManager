@@ -309,26 +309,21 @@ namespace FileManager
                 DrawConsole(0, 28, WINDOW_WIDHT, 3, currentDir);
                 EnterComand(WINDOW_WIDHT);
             }
+
             else
             {
-                StartUpProject();
+                DrawConsole(0, 28, WINDOW_WIDHT, 3, Properties.Settings.Default.StartUpCurrentDir);
+
+                if (Properties.Settings.Default.StartUpTree != "")
+                {
+                    DrawTree(new DirectoryInfo(Properties.Settings.Default.StartUpTree), Properties.Settings.Default.StartUpPage);
+                    DrawConsole(0, 28, WINDOW_WIDHT, 3, Properties.Settings.Default.StartUpCurrentDir);
+                }
 
                 EnterComand(WINDOW_WIDHT);
             }
         }
 
-        /// <summary>
-        /// Вспомогательный метод если отсутствуют данные
-        /// в конфигурационном файле
-        /// </summary>
-        static void StartUpProject()
-        {
-            if (Properties.Settings.Default.StartUpTree != "")
-            {
-                DrawTree(new DirectoryInfo(Properties.Settings.Default.StartUpTree), Properties.Settings.Default.StartUpPage);
-                DrawConsole(0, 28, WINDOW_WIDHT, 3, Properties.Settings.Default.StartUpCurrentDir);
-            }
-        }
 
         /// <summary>
         /// Обработка введенной команды
@@ -604,7 +599,5 @@ namespace FileManager
             Console.SetCursorPosition(currenLeft + 1, currentTop + 8);
             Console.WriteLine("** ДЛЯ КОРРЕКТНОГО ОТОБРАЖЕНИЯ КОНСОЛЬНОГО ПРИЛОЖЕНИЯ НЕ ИЗМЕНЯЙТЕ МАСШТАБ ОКНА!");
         }
-
-
     }
 }
