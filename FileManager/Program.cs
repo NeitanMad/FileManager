@@ -463,8 +463,8 @@ namespace FileManager
         /// </summary>
         /// <param name="path"></param>
         /// <param name="newpath"></param>
-        /// <param name="boo"></param>
-        static void CopyDirectory(string path, string newpath, bool boo)
+        /// <param name="recursive"></param>
+        static void CopyDirectory(string path, string newpath, bool recursive)
         {
             // Get information about the source directory
             var dir = new DirectoryInfo(path);
@@ -483,7 +483,7 @@ namespace FileManager
             }
 
             // If recursive and copying subdirectories, recursively call this method
-            if (boo)
+            if (recursive)
             {
                 foreach (DirectoryInfo subDir in dirs)
                 {
